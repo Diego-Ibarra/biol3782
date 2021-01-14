@@ -3,5 +3,5 @@ Materials used for the development of the labs in biol3782.
 
 Rendered Labs links are below
 
-[LAB 1: Introduction RStudio and R](https://diego-ibarra.github.io/biol3782/week1)
-[LAB 2: Project management and version control](https://diego-ibarra.github.io/biol3782/week2)
+* [LAB 1: Introduction RStudio and R](https://diego-ibarra.github.io/biol3782/week1)
+* [LAB 2: Project management and version control](https://diego-ibarra.github.io/biol3782/week2)

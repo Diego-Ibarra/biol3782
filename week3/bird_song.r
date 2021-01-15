@@ -1,10 +1,10 @@
-library (phonTools)
-# data (sound)                 ## use the example 'sound' object provided
-sound = loadsound("./data/Mono XC386310 - Northern Goshawk - Accipiter gentilis.wav")        ## or run this line to use you own sound
+library(phonTools)
 
+# Load audio file
+sound <- loadsound("Mono_XC386310__Northern_Goshawk__Accipiter_gentilis.wav")
 
-# Northern Goshawk (Accipiter gentilis) Lunenburg Nova Scotia
-par (mfrow = c(3,1), mar = c(4,4,1,1))
-spectrogram (sound)
-spectrogram (sound, color = 'alternate')
-spectrogram (sound, color = FALSE)
+# Make 3 spectrograms
+par(mfrow = c(3,1), mar = c(4,4,1,1))
+spectrogram(sound)
+spectrogram(sound, color = 'alternate')
+spectrogram(sound, color = FALSE)

@@ -16,35 +16,21 @@ ggplot(data = DM_surveys, mapping = aes(x = weight, y = hindfoot_length)) +
   geom_smooth()
 
 # violinplot ----------------------------------------
-SH_surveys <- subset(surveys, species_id == "SH")
+OLOT_surveys <- subset(surveys, species_id == "OL" |
+                       species_id == "OT")
 
-ggplot(data = SH_surveys, mapping = aes(x = species_id, y = weight)) +
-  geom_violin(trim=FALSE, fill='red', color="darkred",alpha=0.2) +
-  geom_boxplot(width=0.1,
+ggplot(data = OLOT_surveys, mapping = aes(x = species_id, y = weight)) +
+  geom_violin(trim=FALSE, fill='blue', color="darkblue",alpha=0.4) +
+  geom_boxplot(width=0.1,notch=TRUE,
                # custom outliers
-               outlier.colour="blue",
-               outlier.fill="darkblue",
+               outlier.colour="red",
+               outlier.fill="darkred",
+               alpha=0.2,
                outlier.size=3,
-               )
+               ) +
+  ylab("weight (gr)") +
+  ggtitle("Violin/Scatterplot made by My_Name")
 
-
-ggplot(data = subset_surveys, mapping = aes(x = species_id, y = weight)) +
-  geom_boxplot(
-    
-    # custom boxes
-    color="blue",
-    fill="blue",
-    alpha=0.2,
-    
-    # Notch?
-    notch=TRUE,
-    notchwidth = 0.8,
-    
-    # custom outliers
-    outlier.colour="red",
-    outlier.fill="red",
-    outlier.size=3,
-    
-    width = 0.5
-    
-  )
+# time-series with thick lines
+ggplot(data = yearly_counts, aes(x = year, y = n, color = genus)) +
+  geom_line()

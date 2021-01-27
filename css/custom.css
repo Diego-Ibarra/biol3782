@@ -79,6 +79,53 @@ body {
 
 
 
+/* Use Editor */
+.use_editor {
+    background: linear-gradient(to right, #ccffcc 0%, #ffffff 100%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border:1px solid #ffffff;
+    border-bottom:1px solid #ffffff;
+    color:#66cc66;
+    font-size:10px;
+    width:100%;
+    padding:0px;
+    padding-bottom:3px;
+    padding-left:7px;
+    margin-left: -5px;
+    margin-right: 150px;
+    margin-bottom: -13px;
+}
+.use_editor::before {
+    content: "Type in EDITOR, hightlight, and click RUN";
+    }
+
+
+/* Use Console */
+.use_console {
+    background: linear-gradient(to right, #ffe6e6 0%, #ffffff 100%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border:1px solid #ffffff;
+    border-bottom:1px solid #ffffff;
+    color:#ff9999;
+    font-size:10px;
+    width:100%;
+    padding:0px;
+    padding-bottom:3px;
+    padding-left:7px;
+    margin-left: -5px;
+    margin-right: 150px;
+    margin-bottom: -13px;
+}
+.use_console::before {
+    content: "Type in CONSOLE and click ENTER";
+    }
+
+
+
+
+
 
 
 

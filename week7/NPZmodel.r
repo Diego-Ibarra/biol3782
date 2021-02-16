@@ -19,15 +19,15 @@ Pinitial <- 4  # initial phytoplankton concentration (units: mmolN m^-3)
 Ninitial <- 10 # initial nutrients concentration (units: mmolN m^-3)
 Zinitial <- 2  # initial zooplankton concentration (units: mmolN m^-3)
 
-# Chores (calculate number of steps, create zero vectors, create time vector...)
+# Chores (calculate number of steps, create time vector, create zero vectors, ...)
 NoSTEPS <- as.integer(days / dt) # Calculates the number of steps by dividing days by dt and rounding down
 time <- seq(from = 0, to = days, length = NoSTEPS) # Create time vector of equally spaced numbers from zero to "days"
-N <- numeric(NoSTEPS)      # Make Nutrients "empty" vector by making a vector array of zeros (size: NoSTEPS rows by ONE column)
-P <- numeric(NoSTEPS)      # Make Phytoplankton "empty" vector (same process as above)
-Z <- numeric(NoSTEPS)      # Make Zooplankton "empty" vector (same process as above)
-TotNit <- numeric(NoSTEPS) # Make Total-Nitrogen "empty" vector (same process as above)
-L_N <- numeric(NoSTEPS)    # Make "Limitation of N on Phytoplankton" empty vector (same process as above)
-L_P <- numeric(NoSTEPS)    # Make "Limitation of P on Zooplankton" empty vector (same process as above)
+P <- numeric(NoSTEPS)      # Make Phytoplankton "empty" vector by making a vector array of zeros (size: NoSTEPS rows by ONE column) (units: mmolN m^-3) 
+N <- numeric(NoSTEPS)      # Make Nutrients "empty" vector (same process as above) (units: mmolN m^-3)
+Z <- numeric(NoSTEPS)      # Make Zooplankton "empty" vector (same process as above) (units: mmolN m^-3)
+L_N <- numeric(NoSTEPS)    # Make "Limitation of N on Phytoplankton" empty vector (same process as above) (units: dimensionless)
+L_P <- numeric(NoSTEPS)    # Make "Limitation of P on Zooplankton" empty vector (same process as above) (units: dimensionless)
+TotNit <- numeric(NoSTEPS) # Make Total-Nitrogen "empty" vector (same process as above) (units: mmolN m^-3)
 I  <- numeric(NoSTEPS)     # Make Light (I) "empty" vector (same process as above)
 L_I <- numeric(NoSTEPS)    # Make "Limitation of I on Phytoplankton" empty vector (same process as above)
 

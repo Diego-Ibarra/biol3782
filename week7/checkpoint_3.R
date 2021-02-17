@@ -1,8 +1,8 @@
 library(ggplot2)
 
 # Framework
-days <- 365 * 2 # number of days of experiment run (units: days)
-dt   <- 0.01    # time-step  (units: days)
+days <- 10    # number of days of experiment run (units: days)
+dt   <- 0.01  # time-step  (units: days)
 
 # Initial conditions
 Pinitial <- 4  # initial phytoplankton concentration (units: mmolN m^-3)

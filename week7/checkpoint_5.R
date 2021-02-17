@@ -1,8 +1,8 @@
 library(ggplot2)
 
 # Framework
-days <- 365 * 2 # number of days of experiment run (units: days)
-dt   <- 0.01    # time-step  (units: days)
+days <- 365 * 2    # number of days of experiment run (units: days)
+dt   <- 0.01  # time-step  (units: days)
 
 # Parameters
 mu     <- 0.5   # growth rate of phytoplankton (units: d^-1)
@@ -27,9 +27,9 @@ N <- numeric(NoSTEPS)      # Make Nutrients "empty" vector (same process as abov
 Z <- numeric(NoSTEPS)      # Make Zooplankton "empty" vector (same process as above) (units: mmolN m^-3)
 L_N <- numeric(NoSTEPS)    # Make "Limitation of N on Phytoplankton" empty vector (same process as above) (units: dimensionless)
 L_P <- numeric(NoSTEPS)    # Make "Limitation of P on Zooplankton" empty vector (same process as above) (units: dimensionless)
-TotNit <- numeric(NoSTEPS) # Make Total-Nitrogen "empty" vector (same process as above) (units: mmolN m^-3)
 I  <- numeric(NoSTEPS)     # Make Light (I) "empty" vector (same process as above)
-L_I <- numeric(NoSTEPS)    # Make "Limitation of I on Phytoplankton" empty vector (same process as above)
+L_I <- numeric(NoSTEPS)    # Make "Limitation of I on Phytoplankton" empty vector (same process as above) Eq. 16
+
 
 # Creating sunlight ------------------------------------------------------------
 for (i in 1:length(I)) {
@@ -41,63 +41,44 @@ for (i in 1:length(I)) {
   }
 }
 
+
 # Initializing with initial conditions -----------------------------------------
 P[1] <- Pinitial # Initializing phytoplankton vector
 N[1] <- Ninitial # Initializing nutrients vector
 Z[1] <- Zinitial # Initializing zooplankton vector
-TotNit[1] <- P[1] + N[1] + Z[1] # Initializing Total-Nitrogen vector
+
 
 # ******************************************************************************
 # MAIN MODEL LOOP **************************************************************
 for (t in 1:(NoSTEPS-1)) {
   L_N[t] <- N[t]/(K+N[t])       # Calculate Limitation due to (low) nutrients on phytoplankton. Eq. 12 
   L_P[t] <- 1-exp(-Lambda*P[t]) # Calculate Limitation due to (low) phytoplankton on zooplankton. Eq. 13
-  L_I[t] <- 1-exp(-alpha*I[t])  # Calculate Limitation due to (low) light on phytoplankton Eq. 16 
+  L_I[t] <- 1-exp(-alpha*I[t])  # Calculate Limitation due to (low) light on phytoplankton Eq. 16
   
   # Estimate model state at time t+1 
   P[t+1] <- P[t] + (((mu*L_N[t]*L_I[t]*P[t]) - (gamma*L_P[t]*Z[t]) - (mP*P[t])) * dt) # Eq. 9
   N[t+1] <- N[t] + (((mP*P[t]) + (mZ*Z[t]) - (mu*L_N[t]*L_I[t]*P[t])) * dt)           # Eq. 10
   Z[t+1] <- Z[t] + (((gamma*L_P[t]*Z[t]) - (mZ*Z[t])) * dt)                           # Eq. 11
-  TotNit[t+1] = P[t+1] + N[t+1] + Z[t+1] # Calculate total nitrogen
 }
 # end of main model LOOP********************************************************
 # ******************************************************************************
+
 
 # For cleanliness, let's pack everything into a data frame
 output <- data.frame(t=time,
                      N=N,
                      P=P,
-                     Z=Z,
-                     TotNit=TotNit,
-                     L_I=L_I,
-                     L_N=L_N,
-                     L_P=L_P)
+                     Z=Z)
 
 # Plotting ---------------------------------------------------------------------
 # Plot 1: Main variables
 ggplot(data = output, aes(x=time)) +
-  geom_line(aes(y=TotNit, color="TotNit")) +
   geom_line(aes(y = P, color="P")) +
   geom_line(aes(y = N, color="N")) +
   geom_line(aes(y = Z, color="Z")) +
-  ylim(0, max(output$TotNit)) + 
   labs(x = "time (days)",
        y = expression(Nitrogen~(mmol~N~m^-3))) +
   scale_color_manual("Variables",
-                     breaks = c("TotNit", "P", "N", "Z"),
-                     labels = c("TotNit", "P", "N", "Z"),
-                     values = c("yellow", "green", "blue", "red"))
-
-# Plot 2: Limitations
-ggplot(data = output, aes(x=time)) +
-  geom_line(aes(y = L_I, color="L_I")) +
-  geom_line(aes(y = L_N, color="L_N")) +
-  geom_line(aes(y = L_P, color="L_P")) +
-  ylim(0, 1) + 
-  labs(x = "time (days)",
-       y = "Limitation (dimensionless)") +
-  scale_color_manual("Limitations",
-                     breaks = c("L_I", "L_N", "L_P"),
-                     labels = c("L_I: Lim of I on Phy", "L_N: Lim of N on Phy", "L_P: Lim of P on Zoo"),
-                     values = c("cyan", "red", "blue"))
-
+                     breaks = c("P", "N", "Z"),
+                     labels = c("P", "N", "Z"),
+                     values = c("green", "blue", "red"))

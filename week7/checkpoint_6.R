@@ -82,3 +82,16 @@ ggplot(data = output, aes(x=time)) +
                      breaks = c("P", "N", "Z"),
                      labels = c("P", "N", "Z"),
                      values = c("green", "blue", "red"))
+
+# Plot 2: Limitations
+ggplot(data = output, aes(x=time)) +
+  geom_line(aes(y = L_I, color="L_I")) +
+  geom_line(aes(y = L_N, color="L_N")) +
+  geom_line(aes(y = L_P, color="L_P")) +
+  ylim(0, 1) + 
+  labs(x = "time (days)",
+       y = "Limitation (dimensionless)") +
+  scale_color_manual("Limitations",
+                     breaks = c("L_I", "L_N", "L_P"),
+                     labels = c("L_I: Lim of I on Phy", "L_N: Lim of N on Phy", "L_P: Lim of P on Zoo"),
+                     values = c("cyan", "red", "blue"))

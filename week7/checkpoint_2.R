@@ -14,10 +14,14 @@ L_N <- numeric(NoSTEPS)    # Make "Limitation of N on Phytoplankton" empty vecto
 L_P <- numeric(NoSTEPS)    # Make "Limitation of P on Zooplankton" empty vector (same process as above) (units: dimensionless)
 
 # For cleanliness, let's pack everything into a data frame
-output <- data.frame(t=time,
+output <- data.frame(time=time,
                      N=N,
                      P=P,
                      Z=Z)
+
+# Print to screen
+print("Model run is done!")  
+
 
 # Plotting ---------------------------------------------------------------------
 # Plot 1: Main variables

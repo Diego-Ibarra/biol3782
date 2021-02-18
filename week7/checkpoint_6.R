@@ -65,10 +65,14 @@ for (t in 1:(NoSTEPS-1)) {
 
 
 # For cleanliness, let's pack everything into a data frame
-output <- data.frame(t=time,
+output <- data.frame(time=time,
                      N=N,
                      P=P,
                      Z=Z)
+
+# Print to screen
+print("Model run is done!")  
+
 
 # Plotting ---------------------------------------------------------------------
 # Plot 1: Main variables

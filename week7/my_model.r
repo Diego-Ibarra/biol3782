@@ -50,7 +50,7 @@ run_model <- function(days=365, dt=0.01, mu=0.5, K=1, gamma=0.4, Lambda=0.1,
   
   
   # For cleanliness, let's pack everything into a data frame
-  output <- data.frame(t=time,
+  output <- data.frame(tiime=time,
                        N=N,
                        P=P,
                        Z=Z,

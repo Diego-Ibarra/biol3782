@@ -2,6 +2,39 @@ run_model <- function(days=365, dt=0.01, mu=0.5, K=1, gamma=0.4, Lambda=0.1,
                       alpha=0.004, psi=0.01, mP=0.07, mZ=0.03, Pinitial=4,
                       Ninitial=10, Zinitial=2) {
   
+  # This is an NPZ model loosely based on Fennel et al (2006). See full reference below.
+  #
+  # Model outout is returned as a data frame. Model output can be plotted with the plot_run() function.
+  #
+  # Arguments ----------------------------------------------
+  #
+  # Framework
+  # days : number of days of experiment run (units: days)
+  # dt   : time-step (units: days)
+  #
+  # Parameters
+  # mu     : growth rate of phytoplankton (units: d^-1)
+  # K      : half-saturation for nutrient absoption by phytoplankton (units: mmolN m^-3)
+  # gamma  : growth rate of zooplankton (units: d^-1)
+  # Lambda : initial slope of ingestion saturation of zooplankton (units: mmol N^-1 m^3)
+  # alpha  : initial slope of P vs I curve (units: {mmolN m^-3}^-1)
+  # psi    : half-saturation for phytoplankton absoption by mussels (units: mmolN m^-3)
+  # mP     : mortality rate of phytoplankton (units: d^-1)
+  # mZ     : mortality rate of zooplankton (units: d^-1)
+  # 
+  # Initial conditions
+  # Pinitial : initial phytoplankton concentration (units: mmolN m^-3)
+  # Ninitial : initial nutrients concentration (units: mmolN m^-3)
+  # Zinitial : initial zooplankton concentration (units: mmolN m^-3)
+  #
+  # Reference ----------------------------------------------
+  # Fennel , K., Wilkin, J., Levin, J., Moisan, J., O'Reilly, J., Haidvogel, D., Nitrogen cycling
+  # in the Mid Atlantic Bight and implications for the North Atlantic nitrogen budget: Results 
+  # from a three-dimensional model. Global Biogeochemical Cycles 20, GB3007, doi:10.1029/2005GB002456. (2006)
+  
+  
+  
+  
   library(ggplot2)
 
   # Chores (calculate number of steps, create time vector, create zero vectors, ...)
@@ -61,6 +94,13 @@ run_model <- function(days=365, dt=0.01, mu=0.5, K=1, gamma=0.4, Lambda=0.1,
 }
 
 plot_run <- function(output) {
+  
+  # Uses the output from the NPZ model genertaed with the run_model() function to
+  # make two generic plots:
+  #
+  # (1) Time-series pLot of all state variables, and
+  # (2) Time-series pLot of all limiting functions
+  
   # Plotting ---------------------------------------------------------------------
   # Plot 1: Main variables
   plot1 <- ggplot(data = output, aes(x=time)) +

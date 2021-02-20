@@ -1,5 +1,5 @@
 run_model <- function(days=365, dt=0.01, mu=0.5, K=1, gamma=0.4, Lambda=0.1, 
-                      alpha=0.004, psi=0.01, mP=0.07, mZ=0.03, Pinitial=4,
+                      alpha=0.004, mP=0.07, mZ=0.03, Pinitial=4,
                       Ninitial=10, Zinitial=2) {
   
   # This is an NPZ model loosely based on Fennel et al (2006). See full reference below.
@@ -18,7 +18,6 @@ run_model <- function(days=365, dt=0.01, mu=0.5, K=1, gamma=0.4, Lambda=0.1,
   # gamma  : growth rate of zooplankton (units: d^-1)
   # Lambda : initial slope of ingestion saturation of zooplankton (units: mmol N^-1 m^3)
   # alpha  : initial slope of P vs I curve (units: {mmolN m^-3}^-1)
-  # psi    : half-saturation for phytoplankton absoption by mussels (units: mmolN m^-3)
   # mP     : mortality rate of phytoplankton (units: d^-1)
   # mZ     : mortality rate of zooplankton (units: d^-1)
   # 

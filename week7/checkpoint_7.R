@@ -1,5 +1,6 @@
 library(ggplot2)
 
+# User settings ----------------------------------------
 # Framework
 days <- 365 * 2    # number of days of experiment run (units: days)
 dt   <- 0.01  # time-step  (units: days)
@@ -10,7 +11,6 @@ K      <- 1     # half-saturation for nutrient absoption by phytoplankton (units
 gamma  <- 0.4   # growth rate of zooplankton (units: d^-1)
 Lambda <- 0.1   # initial slope of ingestion saturation of zooplankton (units: mmol N^-1 m^3)
 alpha  <- 0.004 # initial slope of P vs I curve (units: {mmolN m^-3}^-1)
-psi    <- 0.01  # half-saturation for phytoplankton absoption by mussels (units: mmolN m^-3)
 mP     <- 0.07  # mortality rate of phytoplankton (units: d^-1)
 mZ     <- 0.03  # mortality rate of zooplankton (units: d^-1)
 
@@ -18,6 +18,8 @@ mZ     <- 0.03  # mortality rate of zooplankton (units: d^-1)
 Pinitial <- 4  # initial phytoplankton concentration (units: mmolN m^-3)
 Ninitial <- 10 # initial nutrients concentration (units: mmolN m^-3)
 Zinitial <- 2  # initial zooplankton concentration (units: mmolN m^-3)
+
+# End of User settings ---------------------------------
 
 # Chores (calculate number of steps, create time vector, create zero vectors, ...)
 NoSTEPS <- as.integer(days / dt) # Calculates the number of steps by dividing days by dt and rounding down

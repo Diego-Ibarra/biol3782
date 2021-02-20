@@ -1,5 +1,6 @@
 library(ggplot2)
 
+# User settings ----------------------------------------
 # Framework
 days <- 10    # number of days of experiment run (units: days)
 dt   <- 0.01  # time-step  (units: days)
@@ -8,6 +9,8 @@ dt   <- 0.01  # time-step  (units: days)
 Pinitial <- 4  # initial phytoplankton concentration (units: mmolN m^-3)
 Ninitial <- 10 # initial nutrients concentration (units: mmolN m^-3)
 Zinitial <- 2  # initial zooplankton concentration (units: mmolN m^-3)
+
+# End of User settings ---------------------------------
 
 # Chores (calculate number of steps, create time vector, create zero vectors, ...)
 NoSTEPS <- as.integer(days / dt) # Calculates the number of steps by dividing days by dt and rounding down

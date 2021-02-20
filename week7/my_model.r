@@ -82,13 +82,17 @@ run_model <- function(days=365, dt=0.01, mu=0.5, K=1, gamma=0.4, Lambda=0.1,
   
   
   # For cleanliness, let's pack everything into a data frame
-  output <- data.frame(tiime=time,
+  output <- data.frame(time=time,
                        N=N,
                        P=P,
                        Z=Z,
                        L_I=L_I,
                        L_N=L_N,
-                       L_P=L_P)  
+                       L_P=L_P) 
+  
+  # Print to screen
+  print("Model run is done!")  
+  
   return(output)
 }
 

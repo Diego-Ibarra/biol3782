@@ -70,7 +70,10 @@ for (t in 1:(NoSTEPS-1)) {
 output <- data.frame(time=time,
                      N=N,
                      P=P,
-                     Z=Z)
+                     Z=Z,
+                     L_I=L_I,
+                     L_N=L_N,
+                     L_P=L_P) 
 
 # Print to screen
 print("Model run is done!")  

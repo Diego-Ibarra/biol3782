@@ -14744,7 +14744,7 @@ FROM `surveys`
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The <code>surveys</code> object behaves like a data frame. Several functions that can be used with data frames can also be used on tables from a database. The output looks just like a regular data frame. However, the columns <code>plot_type</code>, <code>taxa</code>, <code>genus</code>, and <code>species</code> are missing. These are now located in the tables <code>plots</code> and <code>species</code> which we will join together in a moment.</p>
-<p><span class="note"></span> Some <code>dplyr</code> functions won't work the way we expect them too. For example, let's check to see how many rows <code>surveys</code> has with the <code>n_row()</code> function.</p>
+<p><span class="note"></span> Some <code>dplyr</code> functions won't work the way we expect them too. For example, let's check to see how many rows <code>surveys</code> has with the <code>nrow()</code> function.</p>
 <p><br></p>
 <div class="use_console"></div>
 </div>
@@ -19084,6 +19084,12 @@ height=500
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Note that the newly loaded <code>treebase</code> is a list (i.e. not a data frame). Therefore, common functions for data frames, like <code>ncol(),</code> and <code>nrow()</code> do not work. You need to use <code>length()</code> or <code>str()</code> instead.</p>
+
+</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">

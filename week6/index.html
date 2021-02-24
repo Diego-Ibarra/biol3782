@@ -17805,6 +17805,7 @@ Hint: Connect to the species table and write a query that joins the species and 
 <div class="Q"><br><br>
 
 What would the code that returns the total number of rodents in each genus caught in the different plot types look like in dplyr syntax?
+<br><br>
 
 Hint: Write a query that joins the species, plot, and survey tables together. The query should return counts of genus by plot type.
 
@@ -17817,6 +17818,28 @@ Hint: Write a query that joins the species, plot, and survey tables together. Th
 <h2 id="Example-1:-Treebase">Example 1: Treebase<a class="anchor-link" href="#Example-1:-Treebase">&#182;</a></h2><p>Let's take a look at the TreeBASE database. We will use the <code>treebase</code> package described in <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.2041-210X.2012.00247.x">Boettiger &amp; Lang, 2012</a>. <code>treebase</code> queries this API directly rather than the <a href="https://www.treebase.org/treebase-web/home.html;jsessionid=7742E042060186616AA1F369A345ED8F">treebase.org</a> website. TreeBASE is a repository of phylogenetic information, specifically user-submitted phylogenetic trees and the data used to generate them.</p>
 <p>TreeBASE provides two APIs to query the database, one which searches by the metadata associated with different publications (called OAI-PMH), and another which queries the phylogenies directly (called Phylo-ws).  They have somewhat redundant functions, but for our purposes the second one returns the actual data, while the first returns metadata.</p>
 <p>Let's install the <code>treebase</code> package directly from github.</p>
+<p>First, you may need to install the <code>devtools</code> library (unless you already have it installed):</p>
+<p><br></p>
+<div class="use_console"></div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Then, use <code>devtools</code> to install <code>treebase</code> package directly from github:</p>
 <p><br></p>
 <div class="use_console"></div>
 </div>
@@ -19128,7 +19151,7 @@ Why would you want to create a cache of the database?
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="Q"><br><br>
 
-What type/class of object is `branchlentghs`?
+What type/class of object is <b>branchlentghs</b>?
 
 <br><br><div class="qhelp"></div></div>
 </div>
@@ -19137,7 +19160,7 @@ What type/class of object is `branchlentghs`?
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="Q"><br><br>
 
-How many elements/rows does `branchlengths` have?
+How many elements/rows does <b>branchlengths</b> have?
 
 
 <br><br><div class="qhelp"></div></div>
@@ -19870,7 +19893,10 @@ How many observations does <b>fish</b> have?
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="Q"><br><br>
 
-How many distinct <b>Species</b> does <b>fish</b> have? HINT: use the function n_distinct()
+How many distinct <b>Species</b> does <b>fish</b> have? 
+<br>
+
+HINT: use the function n_distinct()
 
 
 <br><br><div class="qhelp"></div></div>
@@ -19880,7 +19906,10 @@ How many distinct <b>Species</b> does <b>fish</b> have? HINT: use the function n
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="Q"><br><br>
 
-How many distinct common names does <b>fish</b> have? HINT: use the function n_distinct()
+How many distinct common names does <b>fish</b> have? 
+<br>
+
+HINT: use the function n_distinct()
 
 
 <br><br><div class="qhelp"></div></div>
@@ -20070,6 +20099,7 @@ What is the value of the 10th row in the <b>resil</b> table?
 <div class="Q"><br><br>
 
 How many distinct types/levels of Resilience are there in <b>resil</b>?
+<br>
 
 HINT: Use the unique() function
 
@@ -20082,6 +20112,7 @@ HINT: Use the unique() function
 <div class="Q"><br><br>
 
 What are the distinct types/levels of Resilience are there in <b>resil</b>? 
+<br>
 
 HINT: Use the unique() function
 

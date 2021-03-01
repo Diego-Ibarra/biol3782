@@ -43,8 +43,8 @@ for (t in 1:(NoSTEPS-1)) {
   L_P[t] <- 1-exp(-Lambda*P[t]) # Calculate Limitation due to (low) phytoplankton on zooplankton. Eq. 13
   
   # Estimate model state at time t+1 
-  P[t+1] <- P[t] + (((mu*L_N[t]*L_I[t]*P[t]) - (gamma*L_P[t]*Z[t]) - (mP*P[t])) * dt) # Eq. 9
-  N[t+1] <- N[t] + (((mP*P[t]) + (mZ*Z[t]) - (mu*L_N[t]*L_I[t]*P[t])) * dt)           # Eq. 10
+  P[t+1] <- P[t] + (((mu*L_N[t]*P[t]) - (gamma*L_P[t]*Z[t]) - (mP*P[t])) * dt) # Eq. 9
+  N[t+1] <- N[t] + (((mP*P[t]) + (mZ*Z[t]) - (mu*L_N[t]*P[t])) * dt)           # Eq. 10
   Z[t+1] <- Z[t] + (((gamma*L_P[t]*Z[t]) - (mZ*Z[t])) * dt)                           # Eq. 11
 }
 # end of main model LOOP********************************************************

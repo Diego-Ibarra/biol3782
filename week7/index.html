@@ -15568,7 +15568,7 @@ How many columns are in the <b>time</b> vector?
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="Q"><br>
 
-How many rows are in the <b>time</b> vector?
+How many elements are in the <b>time</b> vector?
 
 
 <br><br><div class="qhelp"></div></div>
@@ -15612,10 +15612,10 @@ What are the units of the <b>time</b> vector?
 <p>We need one empty vector for each of the equations 9 to 13. Go ahead and copy-paste the following at the end of the <code># Chores</code> section of your code in your <span class="file">NPZmodel.r</span> file, and click <span class="source"></span>:</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">P</span> <span class="o">&lt;-</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">NoSTEPS</span><span class="p">)</span>      <span class="c1"># Make Phytoplankton &quot;empty&quot; vector by making a vector array of zeros (size: NoSTEPS rows by ONE column) (units: mmolN m^-3) </span>
@@ -15628,6 +15628,30 @@ What are the units of the <b>time</b> vector?
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+Error in numeric(NoSTEPS): object &#39;NoSTEPS&#39; not found
+Traceback:
+
+1. numeric(NoSTEPS)</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15699,7 +15723,7 @@ How many columns are in the <b>N</b> vector?
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="Q"><br>
 
-How many rows are in the <b>Z</b> vector?
+How many elements are in the <b>Z</b> vector?
 
 
 <br><br><div class="qhelp"></div></div>
@@ -20337,7 +20361,7 @@ In experiment 2, what happened to the average concentration of phytoplankton (me
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-r"><pre><span></span><span class="n">cssFile</span> <span class="o">&lt;-</span> <span class="s">&#39;../css/custom.css&#39;</span>

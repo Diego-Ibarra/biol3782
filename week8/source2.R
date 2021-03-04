@@ -226,8 +226,68 @@ movies_df %>%
   group_by(letter) %>% 
   summarize(n=n())
 
+
+
 #For question below 29
 movies_df %>% 
   mutate(letter=str_extract(Director, "[a-z]"))  %>% 
   group_by(letter) %>% 
   summarize(n=n())
+
+# or
+movies_df %>% 
+  mutate(letter=str_extract(Director, "^[A-Z]e.*"))  %>% 
+  group_by(letter) %>% 
+  summarize(n=n())
+
+
+
+
+#For question below 30 , 31
+movies_df %>% 
+  filter(Actor =='Lily James')
+
+#For question below 32
+movies_df %>%
+  arrange(desc(Runtime)) %>% 
+  select(Runtime,Genre, Title) %>% 
+  head()
+
+#For question below 33, 34
+movies_df %>%
+  filter(Runtime >= 130 & Runtime <= 160) %>%
+  arrange(desc(Votes)) %>% 
+  select(Runtime,Genre, Votes, Title, Director) %>% 
+  head()
+
+#For question below 35, 36
+movies_df %>%
+  filter(Runtime >= 100 & Runtime <= 120) %>%
+  select(Genre, Gross_Earning_in_Mil) %>% 
+  group_by(Genre) %>% 
+  na.omit() %>% 
+  summarize(sum=sum(Gross_Earning_in_Mil))
+
+#For question below 37
+movies_df %>%
+  filter(Runtime >= 100 & Runtime <= 120 & Genre == 'Crime') %>%
+  head()
+
+#For question below 38
+movies_df %>%
+  select(Genre, Gross_Earning_in_Mil) %>% 
+  group_by(Genre) %>% 
+  na.omit() %>% 
+  summarize(sum=sum(Gross_Earning_in_Mil))
+
+#For the question below 39
+ggplot(movies_df, aes(x = Votes, y = Gross_Earning_in_Mil))+
+  geom_point(aes(size = Rating, col = Genre))+
+  theme_classic()
+
+# 40 and 41
+movies_df %>%
+  filter(!is.na(Gross_Earning_in_Mil)) %>%
+  group_by(Genre) %>%
+  summarize(aveGross = mean(Gross_Earning_in_Mil), aveVotes = mean(Votes))
+

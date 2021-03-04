@@ -1,0 +1,70 @@
+//refs ---> https://support.sizmek.com/hc/en-us/articles/360028289412-Sizmek-HTML5-API#EB.isInitialized
+
+var creative = {};
+var dynamicBuilder = {};
+dynamicBuilder.data = [];
+
+
+function startAd() {
+  creative.dom = {};
+  creative.dom.mainContainer = document.querySelector('.dynamicAdvertContainer');
+  //
+  // Command to build the data
+  //
+  adkit.onReady(function(){
+    if(EB.isInitialized()){
+      preloadScript();
+    }else{
+      setTimeout(function(){EB.addEventListener(EBG.EventName.EB_INITIALIZED, preloadScript)}, 1000);
+      console.log('timeout for politeload local testing');
+    }
+  });
+}
+
+// preload scripts
+function preloadScript(){
+  var script = document.createElement('script');
+  script.onload = buildData;
+  script.onerror = function(){
+    console.error('Failed to load Dynamic Builder');
+  }
+
+  script.src = 'dynamicBuilder.min.js';
+  document.head.appendChild(script);
+}
+
+function buildData() {
+  //
+  // This url will be injected dynamically from the Sizmek feed
+  //
+  var url = document.getElementById('dco_jsonUrl').innerHTML;
+  if (url != '' && url != undefined) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType('application/json');
+    xobj.onreadystatechange = function() {
+      if (xobj.readyState == 4 && xobj.status == '200') {
+        var data = xobj.responseText;
+        var parsedData = JSON.parse(data);
+        var target = '.dynamicAdvertContainer';
+        buildDOM(target, parsedData);
+        show();
+      }
+    };
+    xobj.open('GET', url, false);
+    xobj.send(null);
+  }
+}
+
+function show() {
+  creative.dom.mainContainer.style.display = 'block';
+  //
+  // Begins animation after dom has been constructed
+  //
+  startAnimation(0);
+}
+
+function clickthrough() {
+  EB.clickthrough();
+}
+
+window.addEventListener('load', startAd);

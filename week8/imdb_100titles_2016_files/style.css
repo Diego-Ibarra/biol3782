@@ -1,0 +1,35 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: #000000;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.dynamicAdvertContainer {
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    line-height: 1.15;
+    background: #EEE;
+    overflow: hidden;
+}
+
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+#dco_jsonUrl, #dco_exitUrl {
+	display: none;
+}

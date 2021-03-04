@@ -10,3 +10,4 @@ Rendered Labs links are below
 * [LAB 5: Advanced data manipulation](https://diego-ibarra.github.io/biol3782/week5)
 * [LAB 6: SQL databases and R](https://diego-ibarra.github.io/biol3782/week6)
 * [LAB 7: Flow control and Functions explained](https://diego-ibarra.github.io/biol3782/week7)
+* [LAB 8: Temporal data and string manipulation plus web scrapping](https://diego-ibarra.github.io/biol3782/week8)

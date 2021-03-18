@@ -12,3 +12,4 @@ Rendered Labs links are below
 * [LAB 7: Flow control and Functions explained](https://diego-ibarra.github.io/biol3782/week7)
 * [LAB 8: Temporal data and string manipulation plus web scrapping](https://diego-ibarra.github.io/biol3782/week8)
 * [LAB 9: Mapping and geospatial analysis - Part 1](https://diego-ibarra.github.io/biol3782/week9)
+* [LAB 10: Mapping and geospatial analysis - Part 2](https://diego-ibarra.github.io/biol3782/week10)

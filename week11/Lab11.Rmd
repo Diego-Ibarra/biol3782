@@ -1,0 +1,148 @@
+---
+title: "Lab11"
+author: "Diego Ibarra"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  pdf_document: default
+header-includes: \usepackage{setspace}\doublespacing
+bibliography: References.bib
+csl: apa-6th-edition.csl
+sansfont: sans
+fontsize: 12pt
+---
+
+The use of the highlight ('text') will be reserved for denoting code.
+
+To add emphasis to other text, use **bold** or *italics*
+
+You can specify the following
+
+Unordered list item
+* Unordered list item
+
+Ordered list item
+1. Ordered list item
+
+Website link
+[Google](https://www.google.com)
+
+Equation
+$A =\pi \times r^{2}$
+
+This is how you waould add H. Wickham as an in-text citation
+
+After a statement:
+
+[@wickham2011ggplot2]
+
+Date only after author name:
+
+[-@wickham2011ggplot2]
+
+Multiple references:
+
+[@wickham2011ggplot2;@wickham2011tourr]
+
+Headings and sub-headings are created by using the pound (#) symbol followed by a space.
+
+# Main Heading
+## Sub-heading 1
+### Sub-heading 2
+
+
+```{r, fig.width = 4, fig.height = 3}
+#Create dummy data
+A <- c("a", "a", "b", "b")
+B <- c(5, 10, 15,20)
+dataframe <- data.frame(A, B)
+
+#Plot figure
+boxplot(B~A, data =  dataframe)
+```
+
+
+```{r}
+library(knitr)
+kable(dataframe, digits = 2)
+```
+
+```{r}
+#install.packages(pander)
+library(`pander`)
+plant <- c("a", "b", "c")
+temperature <- c(20, 20, 20)
+growth <- c(0.65, 0.95, 0.15)
+dataframe <- data.frame(plant, temperature, growth)
+emphasize.italics.cols(3)   # Make the 3rd column italics
+pander(dataframe)           # Create the table
+```
+
+
+```{r, include = FALSE}
+edidiv <- read.csv("edidiv.csv")
+```
+
+# Data Exploration
+
+A preliminary investigation into the biodiversity of Edinburgh, using data from the [NBN Gateway](https://data.nbn.org.uk/).
+
+
+
+
+
+
+## What is the species richness across taxonomic groups?
+
+A table of species richness:
+```{r, results='asis'}
+library(dplyr)
+
+richness <- 
+  edidiv %>%
+  group_by(taxonGroup) %>%
+  summarise(Species_richness = n_distinct(taxonName)) 
+
+pander(richness)
+```
+
+
+
+
+
+
+A barplot of the table above:
+```{r, fig.align="center", fig.width=15, fig.height=8}
+barplot(richness$Species_richness, 
+        names.arg = richness$taxonGroup, 
+        xlab="Taxa", ylab="Number of species", 
+        ylim=c(0,600)
+        ) 
+```
+
+
+### What is the most common species in each taxonomic group?
+
+A table of the most common species:
+```{r}
+#Create a vector of most abundant species per taxa
+max_abund <-
+  edidiv %>%
+    group_by(taxonGroup) %>%
+    summarise(taxonName = names(which.max(table(taxonName))))
+
+#Add the vector to the data frame
+richness_abund <-
+inner_join(richness, max_abund, by = "taxonGroup")
+richness_abund <- rename(richness_abund, Most_abundant =  taxonName, Taxon = taxonGroup)
+```
+
+```{r}
+richness_abund <- rename(richness_abund, 
+                        "Most Abundant" = Most_abundant,
+                        "Species Richness" = Species_richness) #Change the column names
+emphasize.italics.cols(3) #Make the 3rd column italics
+pander(richness_abund) #Create a table
+```
+
+

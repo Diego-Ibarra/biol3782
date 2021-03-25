@@ -1,0 +1,583 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  12pt,
+]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setsansfont[]{sans}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Lab11},
+  pdfauthor={Diego Ibarra},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{setspace}\doublespacing
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\title{Lab11}
+\author{Diego Ibarra}
+\date{25 March, 2021}
+
+\begin{document}
+\maketitle
+
+The use of the highlight (`text') will be reserved for denoting code.
+
+To add emphasis to other text, use \textbf{bold} or \emph{italics}
+
+You can specify the following
+
+Unordered list item * Unordered list item
+
+Ordered list item 1. Ordered list item
+
+Website link \href{https://www.google.com}{Google}
+
+Equation \(A =\pi \times r^{2}\)
+
+This is how you waould add H. Wickham as an in-text citation
+
+After a statement:
+
+(Wickham, 2011)
+
+Date only after author name:
+
+(2011)
+
+Multiple references:
+
+(Wickham, 2011; Wickham, Cook, Hofmann, Buja, \& others, 2011)
+
+Headings and sub-headings are created by using the pound (\#) symbol
+followed by a space.
+
+\hypertarget{main-heading}{%
+\section{Main Heading}\label{main-heading}}
+
+\hypertarget{sub-heading-1}{%
+\subsection{Sub-heading 1}\label{sub-heading-1}}
+
+\hypertarget{sub-heading-2}{%
+\subsubsection{Sub-heading 2}\label{sub-heading-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create dummy data}
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{)}
+\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\NormalTok{dataframe }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(A, B)}
+
+\CommentTok{\#Plot figure}
+\FunctionTok{boxplot}\NormalTok{(B}\SpecialCharTok{\textasciitilde{}}\NormalTok{A, }\AttributeTok{data =}\NormalTok{  dataframe)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Lab11_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(knitr)}
+\FunctionTok{kable}\NormalTok{(dataframe, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+A & B\tabularnewline
+\midrule
+\endhead
+a & 5\tabularnewline
+a & 10\tabularnewline
+b & 15\tabularnewline
+b & 20\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages(pander)}
+\FunctionTok{library}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{pander}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'pander' was built under R version 4.0.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plant }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\NormalTok{temperature }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{20}\NormalTok{)}
+\NormalTok{growth }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.65}\NormalTok{, }\FloatTok{0.95}\NormalTok{, }\FloatTok{0.15}\NormalTok{)}
+\NormalTok{dataframe }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(plant, temperature, growth)}
+\FunctionTok{emphasize.italics.cols}\NormalTok{(}\DecValTok{3}\NormalTok{)   }\CommentTok{\# Make the 3rd column italics}
+\FunctionTok{pander}\NormalTok{(dataframe)           }\CommentTok{\# Create the table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.11}}\centering
+plant\strut
+\end{minipage} &
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\centering
+temperature\strut
+\end{minipage} &
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.12}}\centering
+growth\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.11}}\centering
+a\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\centering
+20\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.12}}\centering
+\emph{0.65}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.11}}\centering
+b\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\centering
+20\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.12}}\centering
+\emph{0.95}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.11}}\centering
+c\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.19}}\centering
+20\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.12}}\centering
+\emph{0.15}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{data-exploration}{%
+\section{Data Exploration}\label{data-exploration}}
+
+A preliminary investigation into the biodiversity of Edinburgh, using
+data from the \href{https://data.nbn.org.uk/}{NBN Gateway}.
+
+\hypertarget{what-is-the-species-richness-across-taxonomic-groups}{%
+\subsection{What is the species richness across taxonomic
+groups?}\label{what-is-the-species-richness-across-taxonomic-groups}}
+
+A table of species richness:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{richness }\OtherTok{\textless{}{-}} 
+\NormalTok{  edidiv }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(taxonGroup) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Species\_richness =} \FunctionTok{n\_distinct}\NormalTok{(taxonName)) }
+
+\FunctionTok{pander}\NormalTok{(richness)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\begin{minipage}[b]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+taxonGroup\strut
+\end{minipage} &
+\begin{minipage}[b]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Species\_richness\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Beetle\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+37\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Bird\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+86\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Butterfly\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+25\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Dragonfly\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+11\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Flowering.Plants\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+521\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Fungus\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+219\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Hymenopteran\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+112\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Lichen\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+94\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Liverwort\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+40\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Mammal\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+33\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+Mollusc\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.26}}\centering
+97\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+A barplot of the table above:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(richness}\SpecialCharTok{$}\NormalTok{Species\_richness, }
+        \AttributeTok{names.arg =}\NormalTok{ richness}\SpecialCharTok{$}\NormalTok{taxonGroup, }
+        \AttributeTok{xlab=}\StringTok{"Taxa"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Number of species"}\NormalTok{, }
+        \AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{600}\NormalTok{)}
+\NormalTok{        ) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Lab11_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+\hypertarget{what-is-the-most-common-species-in-each-taxonomic-group}{%
+\subsubsection{What is the most common species in each taxonomic
+group?}\label{what-is-the-most-common-species-in-each-taxonomic-group}}
+
+A table of the most common species:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create a vector of most abundant species per taxa}
+\NormalTok{max\_abund }\OtherTok{\textless{}{-}}
+\NormalTok{  edidiv }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(taxonGroup) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{taxonName =} \FunctionTok{names}\NormalTok{(}\FunctionTok{which.max}\NormalTok{(}\FunctionTok{table}\NormalTok{(taxonName))))}
+
+\CommentTok{\#Add the vector to the data frame}
+\NormalTok{richness\_abund }\OtherTok{\textless{}{-}}
+\FunctionTok{inner\_join}\NormalTok{(richness, max\_abund, }\AttributeTok{by =} \StringTok{"taxonGroup"}\NormalTok{)}
+\NormalTok{richness\_abund }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(richness\_abund, }\AttributeTok{Most\_abundant =}\NormalTok{  taxonName, }\AttributeTok{Taxon =}\NormalTok{ taxonGroup)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{richness\_abund }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(richness\_abund, }
+                        \StringTok{"Most Abundant"} \OtherTok{=}\NormalTok{ Most\_abundant,}
+                        \StringTok{"Species Richness"} \OtherTok{=}\NormalTok{ Species\_richness) }\CommentTok{\#Change the column names}
+\FunctionTok{emphasize.italics.cols}\NormalTok{(}\DecValTok{3}\NormalTok{) }\CommentTok{\#Make the 3rd column italics}
+\FunctionTok{pander}\NormalTok{(richness\_abund) }\CommentTok{\#Create a table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Taxon\strut
+\end{minipage} &
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Species Richness\strut
+\end{minipage} &
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+Most Abundant\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Beetle\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+37\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Coccinella septempunctata}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Bird\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+86\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Turdus merula}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Butterfly\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+25\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Maniola jurtina}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Dragonfly\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+11\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Ischnura elegans}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Flowering.Plants\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+521\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Urtica dioica}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Fungus\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+219\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Auricularia auricula-judae}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Hymenopteran\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+112\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Bombus (Bombus) terrestris}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Lichen\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+94\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Xanthoria parietina}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Liverwort\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+40\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Lophocolea bidentata}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Mammal\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+33\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Sciurus carolinensis}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+Mollusc\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.26}}\centering
+97\strut
+\end{minipage} &
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.43}}\centering
+\emph{Cornu aspersum}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-wickham2011ggplot2}{}%
+Wickham, H. (2011). ggplot2. \emph{Wiley Interdisciplinary Reviews:
+Computational Statistics}, \emph{3}(2), 180--185.
+
+\leavevmode\hypertarget{ref-wickham2011tourr}{}%
+Wickham, H., Cook, D., Hofmann, H., Buja, A., \& others. (2011). Tourr:
+An r package for exploring multivariate data with projections.
+\emph{Journal of Statistical Software}, \emph{40}(2), 1--18.
+
+\end{CSLReferences}
+
+\end{document}
